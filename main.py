@@ -16,7 +16,7 @@ random.seed(352)
 openTime = 0
 closeTime = 250
 endOfDeliveryTime = closeTime + 30  # Tiempo de margen para que termine el reparto
-maxOrders = 100
+maxOrders = 50
 maxOrdersPerDeliver = 3
 
 # ====================================
@@ -162,7 +162,7 @@ def Simular(openTime, closeTime):
     print("pedidos entregados:", len(pedidosEntregados))
 
     # Hacemos un postprocesamiento de los datos de cada entidad "pedido" para calcular el tiempo de demora para en la entrega de los pedidos.
-    # print('Demoras')
+    print('Demoras')
     delayList1 = []
     delayList2 = []
     zonasTotal = [0, 0]  # 2 zonas

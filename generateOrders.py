@@ -1,5 +1,7 @@
 import sys
 import random
+import numpy
+import math
 
 """
 Orden ejemplo: {idOrder:22, time:2145, x:43, y:-23, idDelivery:4}
@@ -15,7 +17,16 @@ ordersList = []
 
 
 def generateOrders(openTime, closeTime, maxOrders):
-    time = random.sample(range(openTime, closeTime), maxOrders)
+
+    vector = []
+    acumulate = 0
+
+    for i in range(maxOrders):
+        value = math.ceil(numpy.random.lognormal(mean=0.3, sigma=1.5, size=None))
+        acumulate += value
+        vector.append(acumulate)
+
+    time = vector
     for o in range(maxOrders):
         idOrder = o
         # el 80% de los pedidos viene de zona 1
@@ -40,6 +51,7 @@ def generateOrders(openTime, closeTime, maxOrders):
         ordersList.append(order)
     # Ordena la lista de ordenes
     sortedList = sorted(ordersList, key=lambda i: i['time'])
+    print(sortedList)
     return sortedList
 
 
