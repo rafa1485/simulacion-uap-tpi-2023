@@ -24,4 +24,4 @@ def coccion():
         else:
             a = m
     return m
-print(biseccion())
+print(coccion())
