@@ -1,6 +1,8 @@
 import random
 import matplotlib.pyplot as plt
 
+from deliveryVelocity import deliveryVelocity
+
 # Nuestros módulos
 import generateOrders
 from calculateRoutes import *
@@ -47,7 +49,7 @@ repartidoresOrdersList = {
 # Variables y módulos de repartidores
 # ====================================
 deliveredOrdersList = []
-deliveryVelocity = 6
+# deliveryVelocity = 6
 contadores = [0, 0]  # preparados, listos
 comtadoresrepartidores = [0, 0, 0]
 
@@ -142,7 +144,7 @@ def Simular(openTime, closeTime):
                     # Si la cola tiene al menos un pedido, el repartidor sale a enviarlo.
                     # Para ello planificamos la ruta para saber en que momento realizará cada entrega
                     entregasPedidos, tiempoRegreso = getRoute(
-                        repartidoresOrdersList[repartidoresList[repartidorIndex]['id']], t, deliveryVelocity)
+                        repartidoresOrdersList[repartidoresList[repartidorIndex]['id']], t, deliveryVelocity())
 
                     # Y guardamos las entidades "pedido" en la lista de salidas
                     for p in entregasPedidos:
