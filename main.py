@@ -159,7 +159,15 @@ def Simular(openTime, closeTime):
                     # Ponemos en False el flag de Disponivilidad del repartidor (y se mantendrá así hasta que se cumpla el tiempo de retorno)
                     repartidoresList[repartidorIndex]['available'] == False
 
-    # print(pedidosEntregados)
+    # parte ernst colque
+    print(pedidosEntregados)
+
+    deliveryTime = []
+    for p in pedidosEntregados:
+        deliveryTime.append(p['deliveredTime'] - p['preparedTime'])
+        # deliveryTime.sort()
+    resultado = 
+    print("Objetivo III: ", deliveryTime)
     print("pedidos preparados:", contadores[0])
     print("pedidos listos:", contadores[1])
     print("pedidos entregados:", len(pedidosEntregados))
