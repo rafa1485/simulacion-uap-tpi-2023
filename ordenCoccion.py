@@ -23,5 +23,5 @@ def coccion():
             b = m
         else:
             a = m
-    return m
+    return math.ceil(m)
 print(coccion())
