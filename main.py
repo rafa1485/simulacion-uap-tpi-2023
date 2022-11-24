@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 
 # Nuestros módulos
 import generateOrders
-import ordenCoccion
 from calculateRoutes import *
 
 
@@ -71,7 +70,7 @@ def Simular(openTime, closeTime):
         # Recorre la lista de ordenes que entraron
         # ===================================
         for o in range(len(orderList)):
-            preparationTime = ordenCoccion.coccion()
+            preparationTime = random.randint(10, 15)
             # Si el horario coincide con la hora de la orden
             if orderList[o]['time'] == t:
                 # TIEMPO
