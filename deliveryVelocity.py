@@ -1,4 +1,5 @@
 import random
+import math
 
 def cpd(x):
     if x < 20:
@@ -23,7 +24,7 @@ def deliveryVelocity():
         a = m
 
     x = m
-    return x
+    return math.ceil(x)
 
 
 
