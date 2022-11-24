@@ -51,7 +51,7 @@ def generateOrders(openTime, closeTime, maxOrders):
         ordersList.append(order)
     # Ordena la lista de ordenes
     sortedList = sorted(ordersList, key=lambda i: i['time'])
-    print(sortedList)
+    
     return sortedList
 
 

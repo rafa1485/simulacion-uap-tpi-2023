@@ -29,6 +29,8 @@ orderList = generateOrders(openTime, closeTime, maxOrders)
 preparationList = []
 readyToDeliverList = []
 pedidosEntregados = []
+
+# print(orderList[len(orderList) - 1])
 # ====================================
 print("ordenes:", len(orderList))
 
@@ -38,7 +40,8 @@ print("ordenes:", len(orderList))
 repartidoresList = [
     {'id': 0, 'available': False, 'returnTime': 0},
     {'id': 1, 'available': False, 'returnTime': 0},
-    {'id': 2, 'available': False, 'returnTime': 0}]
+    {'id': 2, 'available': False, 'returnTime': 0},
+]
 repartidoresOrdersList = {
     0: [],
     1: [],
@@ -187,6 +190,25 @@ def Simular(openTime, closeTime):
     print(zonasTotal)
     print("Total de pedidos por repartidor:")
     print(comtadoresrepartidores)
+
+    aTiempo = []
+    pasados = []
+
+    for i in range(len(pedidosEntregados)):
+        if pedidosEntregados[i]['deliveredTime'] - pedidosEntregados[i]['time'] <= 50:
+            print(pedidosEntregados[i]['deliveredTime'] - pedidosEntregados[i]['time'] )
+            aTiempo.append(pedidosEntregados[i])
+        else:
+            pasados.append(pedidosEntregados[i])
+        
+
+        
+    print('Pedidos a tiempo:', len(aTiempo))
+    print('Pedidos pasados:', len(pasados))
+
+    leitpersentash = (len(pasados) / len(pedidosEntregados)) * 100
+
+    print('%',leitpersentash) 
 
     plt.hist(delayList1, label='Zona 1')
     plt.hist(delayList2, label='Zona 2')
