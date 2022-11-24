@@ -29,6 +29,8 @@ orderList = generateOrders(openTime, closeTime, maxOrders)
 preparationList = []
 readyToDeliverList = []
 pedidosEntregados = []
+obj1sup = []
+obj1inf = []
 # ====================================
 print("ordenes:", len(orderList))
 
@@ -38,7 +40,8 @@ print("ordenes:", len(orderList))
 repartidoresList = [
     {'id': 0, 'available': False, 'returnTime': 0},
     {'id': 1, 'available': False, 'returnTime': 0},
-    {'id': 2, 'available': False, 'returnTime': 0}]
+    {'id': 2, 'available': False, 'returnTime': 0}
+    ]
 repartidoresOrdersList = {
     0: [],
     1: [],
@@ -86,6 +89,7 @@ def Simular(openTime, closeTime):
                 # Traspaso de lista de ordenes generadas o lista de ordenes para preparar
                 preparationList.append(orderList[o])
                 contadores[0] = contadores[0] + 1
+
 
         # ===================================
         # Recorre la lista de ordenes que están en preparación para ser trasladados a reparto
@@ -182,17 +186,30 @@ def Simular(openTime, closeTime):
             delayList2.append(demora)
             zonasTotal[1] = zonasTotal[1]+1
 
+    for p in pedidosEntregados:
+        if p['deliveredTime']-p['preparedTime']>=25:
+            print(p['deliveredTime'])
+            obj1sup.append(p['deliveredTime']-p['preparedTime'])
+        else:
+            obj1inf.append(p['deliveredTime']-p['preparedTime'])
+        print(p['deliveredTime']-p['preparedTime'])
+    
+    print("Numero de pedidos superiores a 25m")
+    print(len(obj1sup))
+    print("Numero de pedidos inferiores a 25m")
+    print(len(obj1inf))
+
     # print(demora)
     print("Total de pedidos por zona:")
     print(zonasTotal)
     print("Total de pedidos por repartidor:")
     print(comtadoresrepartidores)
 
-    plt.hist(delayList1, label='Zona 1')
-    plt.hist(delayList2, label='Zona 2')
-    plt.ylim([0, 25])
-    plt.legend()
-    plt.show()
+    # plt.hist(delayList1, label='Zona 1')
+    # plt.hist(delayList2, label='Zona 2')
+    # plt.ylim([0, 25])
+    # plt.legend()
+    # plt.show()
 
     # ===================================
     # Acá se retornarán resultados una vez termine el tiempo:
