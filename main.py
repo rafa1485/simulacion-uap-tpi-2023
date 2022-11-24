@@ -160,14 +160,32 @@ def Simular(openTime, closeTime):
                     repartidoresList[repartidorIndex]['available'] == False
 
     # parte ernst colque
-    print(pedidosEntregados)
+    aTiempo = []
+    pasados = []
+
+    for i in range(len(pedidosEntregados)):
+        if pedidosEntregados[i]['deliveredTime'] - pedidosEntregados[i]['time'] <= 50:
+            # print(pedidosEntregados[i]['deliveredTime'] - pedidosEntregados[i]['time'] )
+            aTiempo.append(pedidosEntregados[i])
+        else:
+            pasados.append(pedidosEntregados[i])
+        
+
+        
+    print('Pedidos a tiempo:', len(aTiempo))
+    print('Pedidos pasados:', len(pasados))
+
+    leitpersentash = (len(pasados) / len(pedidosEntregados)) * 100
+
+    print('%',leitpersentash) 
 
     deliveryTime = []
     for p in pedidosEntregados:
         deliveryTime.append(p['deliveredTime'] - p['preparedTime'])
-        # deliveryTime.sort()
-    resultado = 
-    print("Objetivo III: ", deliveryTime)
+        # deliveryTime.sort()"porcentaje de pedidos que llegan a tiempo: ",resultado
+    resultado = len(aTiempo)/ (len(pasados) + len(aTiempo))
+    print("Objetivo III: ")
+    print("porcentaje de pedidos que llegan a tiempo: ", resultado * 100, "%")
     print("pedidos preparados:", contadores[0])
     print("pedidos listos:", contadores[1])
     print("pedidos entregados:", len(pedidosEntregados))
