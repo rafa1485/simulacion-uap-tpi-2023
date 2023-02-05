@@ -147,6 +147,7 @@ def Simular(openTime, closeTime):
                     entregasPedidos, tiempoRegreso = getRoute(
                         repartidoresOrdersList[repartidoresList[repartidorIndex]['id']], t, deliveryVelocity())
 
+                    print('Entregas pedidos: ', entregasPedidos)
                     # Y guardamos las entidades "pedido" en la lista de salidas
                     for p in entregasPedidos:
                         pedidosEntregados.append(p)
@@ -169,15 +170,15 @@ def Simular(openTime, closeTime):
             aTiempo.append(pedidosEntregados[i])
         else:
             pasados.append(pedidosEntregados[i])
-        
 
-        
+
+
     print('Pedidos a tiempo:', len(aTiempo))
     print('Pedidos pasados:', len(pasados))
 
     leitpersentash = (len(pasados) / len(pedidosEntregados)) * 100
 
-    print('%',leitpersentash) 
+    print('%',leitpersentash)
 
     deliveryTime = []
     for p in pedidosEntregados:
@@ -194,6 +195,8 @@ def Simular(openTime, closeTime):
     print('Demoras')
     delayList1 = []
     delayList2 = []
+    pedidosEntr = []
+    moduloX = []
     zonasTotal = [0, 0]  # 2 zonas
 
     for p in pedidosEntregados:
@@ -207,6 +210,9 @@ def Simular(openTime, closeTime):
             demora = p['deliveredTime'] - p['time']
             delayList2.append(demora)
             zonasTotal[1] = zonasTotal[1]+1
+        pedidosEntr.append(p['deliveredTime'] - p['preparedTime'])
+        moduloX.append(abs(p['x']))
+
 
     # print(demora)
     print("Total de pedidos por zona:")
@@ -214,12 +220,23 @@ def Simular(openTime, closeTime):
     print("Total de pedidos por repartidor:")
     print(comtadoresrepartidores)
 
-    plt.hist(delayList1, label='Zona 1')
-    plt.hist(delayList2, label='Zona 2')
-    plt.ylim([0, 25])
+    print('pedidosEntregados', pedidosEntr)
+
+    # plt.hist(pedidosEntr, label='Pedidos entregados')
+    # plt.hist(delayList1, label='Zona 1')
+    # plt.hist(delayList2, label='Zona 2')
+
+    # plt.ylim([0, 25])
+    # plt.legend()
+    # plt.show()
+
+    plt.plot(moduloX, pedidosEntr, color="black", linestyle="dotted", label='Pedidos entregados')
+    # plt.plot(moduloX, label='Cuadras')
+    plt.ylabel('minutos')
+    }
+    plt.xlabel('cuadras')
     plt.legend()
     plt.show()
-
     # ===================================
     # Acá se retornarán resultados una vez termine el tiempo:
     # ===================================

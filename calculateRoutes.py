@@ -17,10 +17,10 @@ def getClosestOrder(orderList, currentPoint):
         newDistance = abs(order['x'] - currentPoint[0]) + abs(order['y'] - currentPoint[1])
         #Se calcula la distancia más cercana hasta esta iteración
         currentClosestDistance = abs(orderClosest['x'] - currentPoint[0]) + abs(orderClosest['y'] - currentPoint[1])
-        
+
         if (newDistance < currentClosestDistance):
             orderClosest = order
-    
+
     return orderClosest
 #print(getMinDistance(orders, [-28,21]))
 
@@ -28,6 +28,7 @@ def getClosestOrder(orderList, currentPoint):
 def calculateTimeToDelivery(currentPoint, order, deliveryVelocity):
 
     distance =  abs(order['x'] - currentPoint[0]) + abs(order['y'] - currentPoint[1])
+    print('distancia: ', distance, 'cuadras(hm) - ', 'velocidad: ', deliveryVelocity, 'cuadras(hm)/min - ', 'tiempo: ', distance / deliveryVelocity, 'minutos')
     deliveredTime = distance / deliveryVelocity
 
     return deliveredTime
@@ -40,7 +41,7 @@ def calculateTimeToDelivery(currentPoint, order, deliveryVelocity):
 #   2:Tiempo absoluto en el que regresará el repartidor
 #=======================================================
 def getRoute(readyToDeliverList, actualTime, deliveryVelocity):
-    
+
     #Lista ordenada de pedidos para repartir.
     ordersToDelivery = []
     #Punto 0,0 donde se definio que estaria el negocio
@@ -67,7 +68,7 @@ def getRoute(readyToDeliverList, actualTime, deliveryVelocity):
         returnTime = actualTime + calculateTimeToDelivery([0,0], ordersToDelivery[-1], deliveryVelocity)
     except:
         breakpoint()
-    
+
     return [ordersToDelivery, returnTime]
 
 #print(getRoute(orders, 32, 4))
