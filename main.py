@@ -233,7 +233,7 @@ def Simular(openTime, closeTime):
     plt.plot(moduloX, pedidosEntr, color="black", linestyle="dotted", label='Pedidos entregados')
     # plt.plot(moduloX, label='Cuadras')
     plt.ylabel('minutos')
-    }
+
     plt.xlabel('cuadras')
     plt.legend()
     plt.show()
