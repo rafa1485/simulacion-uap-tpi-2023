@@ -1,6 +1,7 @@
 import random
 import matplotlib.pyplot as plt
-
+# Import math library
+import math
 from deliveryVelocity import deliveryVelocity
 
 # Nuestros módulos
@@ -184,6 +185,9 @@ def Simular(openTime, closeTime):
     for p in pedidosEntregados:
         deliveryTime.append(p['deliveredTime'] - p['preparedTime'])
         # deliveryTime.sort()"porcentaje de pedidos que llegan a tiempo: ",resultado
+    for i in range(len(deliveryTime)):
+        deliveryTime[i] = math.ceil(deliveryTime[i])
+        print(deliveryTime[i])
     resultado = len(aTiempo)/ (len(pasados) + len(aTiempo))
     print("Objetivo III: ")
     print("porcentaje de pedidos que llegan a tiempo: ", resultado * 100, "%")
@@ -196,6 +200,7 @@ def Simular(openTime, closeTime):
     delayList1 = []
     delayList2 = []
     pedidosEntr = []
+    timeTime = []
     moduloX = []
     zonasTotal = [0, 0]  # 2 zonas
 
@@ -210,7 +215,8 @@ def Simular(openTime, closeTime):
             demora = p['deliveredTime'] - p['time']
             delayList2.append(demora)
             zonasTotal[1] = zonasTotal[1]+1
-        pedidosEntr.append(p['deliveredTime'] - p['preparedTime'])
+        pedidosEntr.append(p['deliveredTime'] - p['time'])
+        timeTime.append(p['deliveredTime'] - p['preparedTime'])
         moduloX.append(abs(p['x']))
 
 
@@ -220,7 +226,16 @@ def Simular(openTime, closeTime):
     print("Total de pedidos por repartidor:")
     print(comtadoresrepartidores)
 
-    print('pedidosEntregados', pedidosEntr)
+    print('delitime - time: ', pedidosEntr, 'delitime - prepatime: ', timeTime)
+    print( 'deliverytime: ', deliveryTime)
+
+    # redondeo de los valores para arriba de delivery time
+    for i in range(len(deliveryTime)):
+        deliveryTime[i] = math.ceil(deliveryTime[i])
+        print(deliveryTime[i])
+
+
+    print((deliveryTime))
 
     # plt.hist(pedidosEntr, label='Pedidos entregados')
     # plt.hist(delayList1, label='Zona 1')
@@ -229,14 +244,18 @@ def Simular(openTime, closeTime):
     # plt.ylim([0, 25])
     # plt.legend()
     # plt.show()
+    # para el normalizado density=True
+    plt.hist(timeTime, label='delitime - prepatime', histtype="step", density=True)
+    plt.hist(pedidosEntr, label='Tiempo de entrega (delitime - time)', histtype="step", density=True)
 
-    plt.plot(moduloX, pedidosEntr, color="black", linestyle="dotted", label='Pedidos entregados')
     # plt.plot(moduloX, label='Cuadras')
-    plt.ylabel('minutos')
+    plt.ylim(0, 0.5)
 
-    plt.xlabel('cuadras')
     plt.legend()
     plt.show()
+
+
+
     # ===================================
     # Acá se retornarán resultados una vez termine el tiempo:
     # ===================================
